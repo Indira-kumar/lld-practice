@@ -22,3 +22,12 @@ class Board:
 
             if i < self.dimension - 1:
                 print("-" * (4 * self.dimension - 1))
+    
+    def get_empty_cells(self):
+        empty_cells = []
+        for i in range(self.dimension):
+            for j in range(self.dimension):
+                cell = self.grids[i][j]
+                if cell.is_empty():
+                    empty_cells.append(cell)
+        return empty_cells
