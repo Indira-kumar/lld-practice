@@ -57,6 +57,32 @@ class OrderOneGameWinningStrategy(GameWinningStrategy):
 
         return False
     
+    def undo_move(self, move: Move):
+        cell = move.cell
+        row = cell.row
+        col = cell.col
+        symbol = move.player.symbol.char
+        
+        if symbol in self.row_counts[row]:
+            self.row_counts[row][symbol] -= 1
+            if self.row_counts[row][symbol] == 0:
+                del self.row_counts[row][symbol]
+        
+        if symbol in self.col_counts[col]:
+            self.col_counts[col][symbol] -= 1
+            if self.col_counts[col][symbol] == 0:
+                del self.col_counts[col][symbol]
+        
+        if row == col and symbol in self.diagonal_count:
+            self.diagonal_count[symbol] -= 1
+            if self.diagonal_count[symbol] == 0:
+                del self.diagonal_count[symbol]
+        
+        if row + col == self.dimension - 1 and symbol in self.anti_diagonal_count:
+            self.anti_diagonal_count[symbol] -= 1
+            if self.anti_diagonal_count[symbol] == 0:
+                del self.anti_diagonal_count[symbol]
+    
     def reset(self):
         self._initialize_counts()
         self.diagonal_count.clear()

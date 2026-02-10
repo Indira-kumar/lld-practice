@@ -52,11 +52,21 @@ def main():
             controller.display_board(game)
             print()
     
-    print("Testing UNDO feature...")
-    controller.undo(game)
-    controller.display_board(game)
-    print()
+    # print("Testing UNDO feature...")
+    # controller.undo(game)
+    # controller.display_board(game)
+    # print()
     
+    # current_player = game.players[game.current_player_index]
+    # if current_player.player_type == PlayerTypeEnum.BOT:
+    #     print("Move 4 again: Bot's turn...")
+    #     bot_cell = current_player.make_move(game.board)
+    #     if bot_cell:
+    #         print(f"Bot plays at ({bot_cell.row}, {bot_cell.col})")
+    #         controller.make_move(game, bot_cell.row, bot_cell.col)
+    #         controller.display_board(game)
+    #         print()
+
     print("Move 5: Human plays at (2, 2)")
     controller.make_move(game, 2, 2)
     controller.display_board(game)

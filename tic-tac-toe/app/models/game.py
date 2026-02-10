@@ -45,7 +45,12 @@ class Game:
             print("No moves to undo.")
             return False
         last_move = self.moves.pop()
-        last_move.cell.clear_cell()  # Use clear_cell() instead of set_symbol(None)
+        last_move.cell.clear_cell()
+        
+        for strategy in self.game_winning_strategies:
+            if hasattr(strategy, 'undo_move'):
+                strategy.undo_move(last_move)
+        
         self.current_player_index = (self.current_player_index - 1) % len(self.players)
         return True
 
